@@ -5,9 +5,10 @@ import (
 	"log"
 	"net/http"
 	"time"
-	"web-app-learn/pkg/config"
-	"web-app-learn/pkg/handlers"
-	"web-app-learn/pkg/render"
+
+	"github.com/tinfante/web-app-learn/pkg/config"
+	"github.com/tinfante/web-app-learn/pkg/handlers"
+	"github.com/tinfante/web-app-learn/pkg/render"
 
 	"github.com/alexedwards/scs/v2"
 )

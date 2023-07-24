@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"net/http"
-	"web-app-learn/pkg/config"
-	"web-app-learn/pkg/models"
-	"web-app-learn/pkg/render"
+
+	"github.com/tinfante/web-app-learn/pkg/config"
+	"github.com/tinfante/web-app-learn/pkg/models"
+	"github.com/tinfante/web-app-learn/pkg/render"
 )
 
 var Repo *Repository

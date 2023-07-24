@@ -6,8 +6,9 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
-	"web-app-learn/pkg/config"
-	"web-app-learn/pkg/models"
+
+	"github.com/tinfante/web-app-learn/pkg/config"
+	"github.com/tinfante/web-app-learn/pkg/models"
 )
 
 var functions = template.FuncMap{}
