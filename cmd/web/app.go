@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/tinfante/web-app-learn/pkg/config"
-	"github.com/tinfante/web-app-learn/pkg/handlers"
-	"github.com/tinfante/web-app-learn/pkg/render"
+	"github.com/tinfante/web-app-learn/internal/config"
+	"github.com/tinfante/web-app-learn/internal/handlers"
+	"github.com/tinfante/web-app-learn/internal/render"
 
 	"github.com/alexedwards/scs/v2"
 )

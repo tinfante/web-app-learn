@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/tinfante/web-app-learn/pkg/config"
-	"github.com/tinfante/web-app-learn/pkg/handlers"
+	"github.com/tinfante/web-app-learn/internal/config"
+	"github.com/tinfante/web-app-learn/internal/handlers"
 )
 
 func routes(app *config.AppConfig) http.Handler {
@@ -20,8 +20,11 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/about", handlers.Repo.About)
 	mux.Get("/generals-quarters", handlers.Repo.Generals)
 	mux.Get("/majors-suite", handlers.Repo.Majors)
+
 	mux.Get("/search-availability", handlers.Repo.Availability)
 	mux.Post("/search-availability", handlers.Repo.PostAvailability)
+	mux.Post("/search-availability-json", handlers.Repo.AvailabilityJSON)
+
 	mux.Get("/contact", handlers.Repo.Contact)
 
 	mux.Get("/make-reservation", handlers.Repo.Reservation)

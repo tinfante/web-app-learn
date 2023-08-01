@@ -1,12 +1,14 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
-	"github.com/tinfante/web-app-learn/pkg/config"
-	"github.com/tinfante/web-app-learn/pkg/models"
-	"github.com/tinfante/web-app-learn/pkg/render"
+	"github.com/tinfante/web-app-learn/internal/config"
+	"github.com/tinfante/web-app-learn/internal/models"
+	"github.com/tinfante/web-app-learn/internal/render"
 )
 
 // Repo the repository used by the handlers
@@ -77,6 +79,25 @@ func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 	start := r.Form.Get("start")
 	end := r.Form.Get("end")
 	w.Write([]byte(fmt.Sprintf("start date is %s and end date is %s", start, end)))
+}
+
+type jsonResponse struct {
+	OK      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
+// AvailabilityJSON hadles for availability and send JSON response
+func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
+	resp := jsonResponse{
+		OK:      true,
+		Message: "Available",
+	}
+	out, err := json.MarshalIndent(resp, "", "    ")
+	if err != nil {
+		log.Println(err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
 }
 
 // Contact renders the contact page

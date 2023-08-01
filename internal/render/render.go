@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 
 	"github.com/justinas/nosurf"
-	"github.com/tinfante/web-app-learn/pkg/config"
-	"github.com/tinfante/web-app-learn/pkg/models"
+	"github.com/tinfante/web-app-learn/internal/config"
+	"github.com/tinfante/web-app-learn/internal/models"
 )
 
 var functions = template.FuncMap{}
