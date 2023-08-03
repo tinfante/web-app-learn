@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
@@ -8,6 +9,7 @@ import (
 
 	"github.com/tinfante/web-app-learn/internal/config"
 	"github.com/tinfante/web-app-learn/internal/handlers"
+	"github.com/tinfante/web-app-learn/internal/models"
 	"github.com/tinfante/web-app-learn/internal/render"
 
 	"github.com/alexedwards/scs/v2"
@@ -19,6 +21,27 @@ var app config.AppConfig
 var session *scs.SessionManager
 
 func main() {
+
+	err := run()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Starting application on port", portNumber)
+
+	srv := &http.Server{
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
+}
+
+func run() error {
+
+	gob.Register(models.Reservation{})
 
 	app.InProduction = false
 
@@ -33,6 +56,7 @@ func main() {
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache")
+		return err
 	}
 
 	app.TemplateCache = tc
@@ -43,13 +67,5 @@ func main() {
 
 	render.NewTemplates(&app)
 
-	fmt.Println(fmt.Sprintf("Starting application on port %s", portNumber))
-
-	srv := &http.Server{
-		Addr:    portNumber,
-		Handler: routes(&app),
-	}
-
-	err = srv.ListenAndServe()
-	log.Fatal(err)
+	return nil
 }
